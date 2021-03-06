@@ -6,7 +6,7 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="class")
 def test_setup(request):
     from selenium import webdriver
-    browser = request.config.getoption("--browser")
+    browser = request.config.getoption("--browser") # Command which allows to invoke specific browser through the terminal
 
     if browser == "chrome":
         driver = webdriver.Chrome(executable_path="/home/sviatoslav-bordovski/PycharmProjects/PytestFrameworkProject/drivers/chromedriver")
