@@ -23,4 +23,4 @@ def test_setup(request):
     yield
     driver.close()
     driver.quit()
-    print("Login test passed")
+    print("Test passed")

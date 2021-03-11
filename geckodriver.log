@@ -687,3 +687,30 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 1615026829726	Marionette	INFO	Listening on port 36307
 1615026829808	Marionette	WARN	TLS certificate errors will be ignored for this session
 1615026837818	Marionette	INFO	Stopped listening on port 36307
+1615231233159	geckodriver	INFO	Listening on 127.0.0.1:36543
+1615231234163	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilerCrzfR"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1615231236056	Marionette	INFO	Listening on port 42221
+1615231236093	Marionette	WARN	TLS certificate errors will be ignored for this session
+1615231241354	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:231:19
+TimedPromise@chrome://marionette/content/sync.js:216:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:433:10
+webdriverClickElement@chrome://marionette/content/interaction.js:179:31
+send@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:81476
+ajax@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:77295
+k._evalUrl@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:79350
+Ie@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:48088
+append@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:49520
+html/<@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:50612
+_@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:31840
+html@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:50290
+success@https://opensource-demo.orangehrmlive.com/index.php/dashboard:911:36
+c@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:27742
+fireWith@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:28487
+l@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:78789
+o/<@https://opensource-demo.orangehrmlive.com/webres_5fee89a90600f2.94309009/js/jquery/jquery-3.4.1.min.js:2:81117
+1615231251689	Marionette	INFO	Stopped listening on port 42221
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
