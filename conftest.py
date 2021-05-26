@@ -15,9 +15,9 @@ def test_setup(request):
     elif browser == "opera":
         driver = webdriver.Opera(executable_path="/home/sviatoslav-bordovski/PycharmProjects/PytestFrameworkProject/drivers/operadriver")
     else:
-        print("Such browser is not supported, please contact QA Automation Team to learn more about the issue")
+        print("Such browser is not supported, please contact QA Automation Team to learn more about an issue")
 
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(20)
     driver.maximize_window()
     request.cls.driver = driver
     yield
