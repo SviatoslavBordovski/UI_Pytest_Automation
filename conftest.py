@@ -17,7 +17,7 @@ def test_setup(request):
     else:
         print("Such browser is not supported, please contact QA Automation Team to learn more about an issue")
 
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(30)
     driver.maximize_window()
     request.cls.driver = driver
     yield
