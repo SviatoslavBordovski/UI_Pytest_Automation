@@ -13,7 +13,7 @@ def test_setup(request):
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        #driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver = webdriver.Chrome(ChromeDriverManager().install())
         #driver = webdriver.Chrome(executable_path="SviatoslavBordovski/PytestFrameworkProject/drivers/chromedriver")
     elif browser == "firefox":
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
