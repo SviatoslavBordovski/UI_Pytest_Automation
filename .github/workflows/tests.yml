@@ -53,10 +53,13 @@ jobs:
       - name: Install moment
         run: pip install moment
         
-      - name: enter tests folder
-        run: cd work/PytestFrameworkProject/PytestFrameworkProject/tests
-        
       - name: Where am I?
+        run: ls -la
+        
+      - name: enter tests folder
+        run: cd /tests
+        
+      - name: How about my location now?
         run: ls -la
           
       - name: Python Pytest Github Action
