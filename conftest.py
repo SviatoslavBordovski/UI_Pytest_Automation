@@ -3,8 +3,6 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
-
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome", help="Type in browser Chrome or Firefox")
 
