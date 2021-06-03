@@ -54,7 +54,7 @@ jobs:
         run: pip install moment
         
       - name: enter tests folder
-        run: cd tests
+        run: cd /SviatoslavBordovski/PytestFrameworkProject/tests
         
       - name: Where am I?
         run: ls -la
