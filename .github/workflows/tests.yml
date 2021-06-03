@@ -1,5 +1,4 @@
 # This is a basic workflow to help you get started with Actions
-
 name: tests
 
 # Controls when the action will run. 
@@ -34,6 +33,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - name: Test with pytest
+        run: pip install pytest
           
       - name: Python Pytest Github Action
         run: pytest --browser chrome -v --html=reports/report_for_chrome_test_run.html
