@@ -34,8 +34,14 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           
+      - name: Test with selenium
+        run: pip install selenium
+          
       - name: Test with pytest
         run: pip install pytest
+        
+      - name: Test with moment
+        run: pip install moment
           
       - name: Python Pytest Github Action
         run: pytest --browser chrome -v
