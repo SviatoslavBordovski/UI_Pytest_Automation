@@ -5,7 +5,7 @@ URL = "https://opensource-demo.orangehrmlive.com/"
 USERNAME = "Admin"
 PASSWORD = "admin123"
 employeeNAME = "Charlie Carter"
-newUSERNAME = "qwerty2019"
+newUSERNAME = "qwerty2020"
 strongPASSWORD = "q1w2e3r4t5y6u7i8o9!~!"
 
 def whoami():
