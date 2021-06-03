@@ -43,6 +43,12 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           
+      - name: Install Google Chrome stable
+        run: | 
+          sudo apt-get update
+          sudo apt-get --only-upgrade install google-chrome-stable
+          google-chrome --version
+          
       - name: Install selenium
         run: pip install selenium
           
@@ -56,9 +62,6 @@ jobs:
         run: pip install moment
         
       - name: Where am I?
-        run: ls -la
-         
-      - name: How about my location now?
         run: ls -la
           
       - name: Python Pytest Github Action
