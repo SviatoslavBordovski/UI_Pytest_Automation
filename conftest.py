@@ -9,11 +9,11 @@ def test_setup(request):
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        driver = webdriver.Chrome(executable_path="/home/sviatoslav-bordovski/PycharmProjects/PytestFrameworkProject/drivers/chromedriver")
+        driver = webdriver.Chrome(executable_path="/PytestFrameworkProject/drivers/chromedriver")
     elif browser == "firefox":
-        driver = webdriver.Firefox(executable_path="/home/sviatoslav-bordovski/PycharmProjects/PytestFrameworkProject/drivers/geckodriver")
+        driver = webdriver.Firefox(executable_path="/PytestFrameworkProject/drivers/geckodriver")
     elif browser == "opera":
-        driver = webdriver.Opera(executable_path="/home/sviatoslav-bordovski/PycharmProjects/PytestFrameworkProject/drivers/operadriver")
+        driver = webdriver.Opera(executable_path="/PytestFrameworkProject/drivers/operadriver")
     else:
         print("Such desktop browser is not supported, please contact AQA Team to learn more about that issue")
 
