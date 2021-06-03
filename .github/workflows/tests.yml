@@ -51,7 +51,7 @@ jobs:
       - name: Where am I?
         run: ls -la
           
-      - name: Python Pytest Github Action
+      - name: Regression Test Suite
         #working-directory: ./tests
         run: pytest --browser chrome -v
         # You may pin to the exact commit or the version.
