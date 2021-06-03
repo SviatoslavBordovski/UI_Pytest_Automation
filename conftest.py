@@ -1,4 +1,8 @@
 import pytest
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
+driver = webdriver.Chrome(ChromeDriverManager().install())
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome", help="Type in browser Chrome or Firefox")
@@ -9,7 +13,8 @@ def test_setup(request):
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        driver = webdriver.Chrome(executable_path="/drivers/chromedriver")
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        #driver = webdriver.Chrome(executable_path="/drivers/chromedriver")
     elif browser == "firefox":
         driver = webdriver.Firefox(executable_path="/drivers/geckodriver")
     elif browser == "opera":
