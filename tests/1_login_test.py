@@ -1,4 +1,4 @@
-import allure
+#import allure
 import pytest
 import moment
 import selenium
