@@ -23,6 +23,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -34,16 +37,16 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           
-      - name: Test with selenium
+      - name: Install selenium
         run: pip install selenium
           
-      - name: Test with pytest
+      - name: Install pytest
         run: pip install pytest
         
-      - name: Test with moment
+      - name: Install moment
         run: pip install moment
         
-      - name: Test with WebdriverManager
+      - name: Install WebdriverManager
         run: pip install webdriver-manager
           
       - name: Python Pytest Github Action
