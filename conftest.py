@@ -10,11 +10,10 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="class")
 def test_setup(request):
     from selenium import webdriver
-    driver = webdriver.Chrome(ChromeDriverManager().install())
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        driver = webdriver.Chrome()
+        #driver = webdriver.Chrome(ChromeDriverManager().install())
         #driver = webdriver.Chrome(executable_path="SviatoslavBordovski/PytestFrameworkProject/drivers/chromedriver")
     elif browser == "firefox":
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
