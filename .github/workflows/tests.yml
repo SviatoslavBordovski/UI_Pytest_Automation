@@ -55,15 +55,13 @@ jobs:
         
       - name: Where am I?
         run: ls -la
-        
-      - name: enter tests folder
-        run: cd /tests
-        
+         
       - name: How about my location now?
         run: ls -la
           
       - name: Python Pytest Github Action
-        run: pytest -v --browser chrome
+        working-directory: ./tests
+        run: pytest 1_login_test.py
         # You may pin to the exact commit or the version.
         # uses: fylein/python-pytest-github-action@24dcd8e6b37efdb9281fd21630a0eef8648bddb3
         #uses: fylein/python-pytest-github-action@v2
