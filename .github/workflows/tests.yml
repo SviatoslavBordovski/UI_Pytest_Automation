@@ -62,11 +62,11 @@ jobs:
         # uses: fylein/python-pytest-github-action@24dcd8e6b37efdb9281fd21630a0eef8648bddb3
         #uses: fylein/python-pytest-github-action@v2
         
-      - name: Collect Allure files and generate allure-report folder
-        run: |
-          allure serve /reports/allure-reports
-      - name: Publishing Allure artifact to GitHub Actions
-        uses: actions/upload-artifact@v2
-        with:
-          name: allure-report
-          path: allure-report
+     # - name: Collect Allure files and generate allure-report folder
+       # run: |
+        #  allure serve /reports/allure-reports
+      #- name: Publishing Allure artifact to GitHub Actions
+       # uses: actions/upload-artifact@v2
+       # with:
+         # name: allure-report
+         # path: allure-report
