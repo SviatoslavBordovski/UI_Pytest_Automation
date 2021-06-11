@@ -50,8 +50,7 @@ jobs:
         
       - name: Install Allure
         run: |
-          brew update
-          brew install allure
+          pip install allure-pytest
         
       - name: Where am I?
         run: ls -la
@@ -65,7 +64,7 @@ jobs:
         
       - name: Collect Allure files and generate allure-report folder
         run: |
-          allure generate reports/
+          allure serve /reports/allure-reports
       - name: Publishing Allure artifact to GitHub Actions
         uses: actions/upload-artifact@v2
         with:
