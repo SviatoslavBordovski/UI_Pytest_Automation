@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: tests
+name: selenium_pytest_tests
 
 # Controls when the action will run
 on:
@@ -48,6 +48,18 @@ jobs:
       - name: Install moment
         run: pip install moment
         
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --deploy --system
+          brew update
+          brew install allure
+          
+      - name: Create a temp artifact folder named `output`
+        run: |
+          mkdir output
+        
       - name: Install Allure
         run: |
           pip install allure-pytest
@@ -56,17 +68,18 @@ jobs:
         run: ls -la
           
       - name: Regression Test Suite
-        #working-directory: ./tests
-        run: pytest --browser opera -v --alluredir=reports
+        working-directory: ./tests
+        run: pytest --browser chrome -v --alluredir=output
         # You may pin to the exact commit or the version.
         # uses: fylein/python-pytest-github-action@24dcd8e6b37efdb9281fd21630a0eef8648bddb3
         #uses: fylein/python-pytest-github-action@v2
         
-     # - name: Collect Allure files and generate allure-report folder
-       # run: |
-        #  allure serve /reports/allure-reports
-      #- name: Publishing Allure artifact to GitHub Actions
-       # uses: actions/upload-artifact@v2
-       # with:
-         # name: allure-report
-         # path: allure-report
+      - name: Collect Allure files and generate allure-report folder
+        run: |
+         allure generate output/
+      
+      - name: Publishing Allure artifact to GitHub Actions
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: allure-report
