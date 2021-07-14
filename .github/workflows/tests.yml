@@ -48,11 +48,11 @@ jobs:
       - name: Install moment
         run: pip install moment
         
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          brew update
-          brew install allure
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           brew update
+#           brew install allure
           
       - name: Create a temp artifact folder named `output`
         run: |
