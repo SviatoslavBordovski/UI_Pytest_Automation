@@ -1,6 +1,4 @@
-#import allure
 import pytest
-import moment
 import selenium
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
