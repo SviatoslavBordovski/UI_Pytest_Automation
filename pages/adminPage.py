@@ -20,7 +20,7 @@ class AdminPage:
         self.customer_list_table = "customerList"
         self.username_search_field = "searchSystemUser_userName"  #send_keys
         self.username_search_button = "searchBtn"  #click to find
-        self.found_new_username = "qwerty2021"
+        self.found_new_username = "qwerty2022"
 
     def click_admin_button(self):
         self.driver.find_element_by_id(self.view_users_button_id).click()
