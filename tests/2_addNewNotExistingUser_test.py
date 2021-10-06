@@ -22,7 +22,7 @@ class TestAdminPage:
 
     def test_addUser(self):
         """Adding not existing user"""
-        driver = self.driver  # defines the driver imported from conftest file
+        driver = self.driver  # defines the driver imported from conftest.py file
         #faker = Faker()
         adminpage = AdminPage(driver)
         adminpage.click_admin_button()
