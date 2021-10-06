@@ -44,4 +44,4 @@ class TestAdminPage:
         adminpage.search_new_saved_user(utils.newUSERNAME)
         adminpage.click_search_button()
         adminpage.verify_found_new_user()
-        time.sleep(2)
+        time.sleep(3)
