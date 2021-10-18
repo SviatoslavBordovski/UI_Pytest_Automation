@@ -20,7 +20,7 @@ class AdminPage:
         self.save_newUser_button_id = "btnSave"
         self.customer_list_table = "customerList"
         self.username_search_field = "searchSystemUser_userName"  #send_keys
-        self.username_search_button = "searchBtn"  #click to find
+        self.username_search_button = "searchBtn"  #click to find username
         self.found_new_username = "qwerty2024"
 
     def click_admin_button(self):
