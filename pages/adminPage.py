@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import Select
 class AdminPage:
 
     def __init__(self, driver):
+        """Constructor of our class"""
         self.driver = driver
 
         self.view_users_button_id = "menu_admin_viewAdminModule"
