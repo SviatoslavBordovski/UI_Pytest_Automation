@@ -1,6 +1,7 @@
 class HomePage:
 
     def __init__(self, driver):
+        """Constructor for initializing the attributes of the class"""
         self.driver = driver
 
         self.welcome_link_id = "welcome"
