@@ -17,7 +17,7 @@ class TestLoginLogout:
         login.click_login_button()
 
     def test_logout(self):
-        """Sign out from the website"""
+        """Sign out from website"""
         try:
             driver = self.driver  # defines the driver imported from conftest file
             homepage = HomePage(driver)
