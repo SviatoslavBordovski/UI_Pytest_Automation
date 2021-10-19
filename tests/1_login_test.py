@@ -29,9 +29,9 @@ class TestLoginLogout:
         except AssertionError as error:
             print("This test should be failed due to assertion error")
             print(error)
-            currentTime = moment.now().strftime("_%d-%m-%Y_%H-%M-%S")  #moment library starts magic here :)
-            testName = utils.whoami()  #declaring the function which gives name of test function that fails
-            screenshotName = testName + currentTime  #make screenshot name with that function
+            currentTime = moment.now().strftime("_%d-%m-%Y_%H-%M-%S")  # moment library starts magic here :)
+            testName = utils.whoami()  # declaring the function which gives name of test function that fails
+            screenshotName = testName + currentTime  # make screenshot name with that function
             allure.attach(self.driver.get_screenshot_as_png(), name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
             driver.get_screenshot_as_file("/home/sviatoslav-bordovski/PycharmProjects/PytestFrameworkProject/screenshots/" + screenshotName + ".png")
