@@ -37,7 +37,7 @@ jobs:
           google-chrome --version
           
       - name: Install selenium
-        run: pip install selenium
+        run: pip install selenium 3.141.1
           
       - name: Install pytest
         run: pip install pytest
