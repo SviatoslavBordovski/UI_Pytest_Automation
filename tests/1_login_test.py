@@ -40,7 +40,7 @@ class TestLoginLogout:
         except selenium.common.exceptions.NoSuchElementException as error:
             print("Logout button was not found but test has been passed because it is allowed to fail")
             print(error)
-            currentTime = moment.now().strftime("_%d-%m-%Y_%H-%M-%S")  #moment library starts magic here :)
+            currentTime = moment.now().strftime("_%d-%m-%Y_%H-%M-%S")  # moment library starts magic here :)
             testName = utils.whoami()
             screenshotName = testName + currentTime
             allure.attach(self.driver.get_screenshot_as_png(), name=screenshotName,
