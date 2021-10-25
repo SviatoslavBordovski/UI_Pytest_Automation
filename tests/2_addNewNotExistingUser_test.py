@@ -3,8 +3,8 @@ import pytest
 from pages.loginPage import LoginPage
 from pages.adminPage import AdminPage
 from utils import utils as utils
-#from selenium import webdriver
-#from selenium.webdriver.support.ui import Select 
+# from selenium import webdriver
+# from selenium.webdriver.support.ui import Select 
 
 @pytest.mark.usefixtures("test_setup")
 class TestAdminPage:
