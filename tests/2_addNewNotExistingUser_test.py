@@ -10,7 +10,7 @@ from utils import utils as utils
 class TestAdminPage:
 
     def test_login(self):
-        """Sign in to the website"""
+        """Sign in to the Admin CRM"""
         driver = self.driver   #defines the driver imported from conftest file
         driver.get(utils.URL)
         login = LoginPage(driver)
@@ -19,7 +19,7 @@ class TestAdminPage:
         login.click_login_button()
 
     def test_addUser(self):
-        """Adding new, not existing user"""
+        """Adding new (not existing) user"""
         driver = self.driver  # defines the driver imported from conftest.py file
         #faker = Faker()
         adminpage = AdminPage(driver)
