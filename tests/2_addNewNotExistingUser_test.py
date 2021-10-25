@@ -37,7 +37,7 @@ class TestAdminPage:
         adminpage.verify_saved_user()
 
     def test_search_created_user(self):
-        """Finding newly added user"""
+        """Finding newly created user"""
         driver = self.driver
         adminpage = AdminPage(driver)
         adminpage.search_new_saved_user(utils.newUSERNAME)
