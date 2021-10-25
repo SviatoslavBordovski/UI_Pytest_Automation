@@ -11,7 +11,7 @@ class TestAdminPage:
 
     def test_login(self):
         """Sign in to the Admin CRM"""
-        driver = self.driver   #defines the driver imported from conftest file
+        driver = self.driver   # defines the driver imported from conftest file
         driver.get(utils.URL)
         login = LoginPage(driver)
         login.enter_username(utils.USERNAME)
