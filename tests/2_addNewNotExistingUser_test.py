@@ -32,7 +32,7 @@ class TestAdminPage:
         adminpage.choose_disabled_option()
         adminpage.enter_password(utils.strongPASSWORD)
         adminpage.confirm_password(utils.strongPASSWORD)
-        time.sleep(5)
+        time.sleep(10)
         adminpage.click_save_button()
         adminpage.verify_saved_user()
 
@@ -43,4 +43,4 @@ class TestAdminPage:
         adminpage.search_new_saved_user(utils.newUSERNAME)
         adminpage.click_search_button()
         adminpage.verify_found_new_user()
-        time.sleep(5)
+        time.sleep(10)
