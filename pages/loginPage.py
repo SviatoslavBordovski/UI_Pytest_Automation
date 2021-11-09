@@ -3,7 +3,6 @@ class LoginPage:
     def __init__(self, driver):
         """Constructor for initializing all attributes of the class"""
         self.driver = driver
-
         self.username_textbox_id = "txtUsername"
         self.password_textbox_id = "txtPassword"
         self.login_button_id = "btnLogin"
