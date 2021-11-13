@@ -5,7 +5,6 @@ class AdminPage:
     def __init__(self, driver):
         """Constructor for initializing all the attributes of class"""
         self.driver = driver
-
         self.view_users_button_id = "menu_admin_viewAdminModule"
         self.add_user_button_id = "btnAdd"
         self.userRole_dropdown_id = "systemUser_userType"
