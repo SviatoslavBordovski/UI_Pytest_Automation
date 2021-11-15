@@ -45,7 +45,7 @@ class TestLoginLogout:
             screenshotName = testName + currentTime
             allure.attach(self.driver.get_screenshot_as_png(), name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
-            driver.get_screenshot_as_file("/home/sviatoslav-bordovski/PycharmProjects/PytestFrameworkProject/screenshots/" + screenshotName + ".png")
+            driver.get_screenshot_as_file("<full path to directory where it should be stored in project locally>" + screenshotName + ".png")
             raise
 
         else:
