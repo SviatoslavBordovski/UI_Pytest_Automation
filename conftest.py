@@ -25,7 +25,7 @@ def test_setup(request):
     else:
         print("Found desktop browser is not supported, please contact AQA Team to learn more about raised issue")
 
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(10)
     driver.maximize_window()
     request.cls.driver = driver
     yield
