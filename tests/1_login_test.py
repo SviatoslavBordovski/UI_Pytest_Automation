@@ -8,7 +8,7 @@ from utils import utils as utils
 class TestLoginLogout:
 
     def test_login(self):
-        """Sign in to the website"""
+        """Sign in to the website."""
         driver = self.driver   # defines the driver imported from conftest.py file
         driver.get(utils.URL)
         login = LoginPage(driver)
@@ -17,7 +17,7 @@ class TestLoginLogout:
         login.click_login_button()
 
     def test_logout(self):
-        """Sign out from the website"""
+        """Sign out from the website."""
         try:
             driver = self.driver  # defines the driver imported from conftest.py file
             homepage = HomePage(driver)
@@ -27,7 +27,7 @@ class TestLoginLogout:
             assert x == "OrangeHRM"
 
         except AssertionError as error:
-            print("This test should be failed due to assertion error")
+            print("This test should be failed due to an assertion error")
             print(error)
             currentTime = moment.now().strftime("_%d-%m-%Y_%H-%M-%S")  # moment library starts magic here :-)
             testName = utils.whoami()  # declaring the function which gives name of the test function that fails
