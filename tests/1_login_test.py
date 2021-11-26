@@ -48,8 +48,5 @@ class TestLoginLogout:
             driver.get_screenshot_as_file("<full path to directory where it should be stored in project locally>" + screenshotName + ".png")
             raise
 
-        else:
-            print("No exceptions occurred")
-
         finally:
             print("Looks good here")
