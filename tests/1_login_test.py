@@ -34,7 +34,7 @@ class TestLoginLogout:
             screenshotName = testName + currentTime  # make screenshot name with that function
             allure.attach(self.driver.get_screenshot_as_png(), name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
-            driver.get_screenshot_as_file("<full path to directory where it should be stored in project locally>" + screenshotName + ".png")
+            driver.get_screenshot_as_file("<full path to the directory where it should be stored in project locally>" + screenshotName + ".png")
             raise
 
         except selenium.common.exceptions.NoSuchElementException as error:
