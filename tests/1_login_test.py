@@ -52,4 +52,4 @@ class TestLoginLogout:
             print("No exceptions occurred")
 
         finally:
-            print("It is finally block")
+            print("Looks good here")
