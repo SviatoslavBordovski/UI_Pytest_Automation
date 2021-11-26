@@ -9,7 +9,7 @@ class TestLoginLogout:
 
     def test_login(self):
         """Sign in to the website."""
-        driver = self.driver   # defines the driver imported from conftest.py file
+        driver = self.driver   # defines the driver imported from the conftest.py file
         driver.get(utils.URL)
         login = LoginPage(driver)
         login.enter_username(utils.USERNAME)
@@ -19,7 +19,7 @@ class TestLoginLogout:
     def test_logout(self):
         """Sign out from the website."""
         try:
-            driver = self.driver  # defines the driver imported from conftest.py file
+            driver = self.driver  # defines the driver imported from the conftest.py file
             homepage = HomePage(driver)
             homepage.click_welcome_button()
             homepage.click_logout_button()
