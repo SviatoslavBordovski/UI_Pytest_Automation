@@ -5,6 +5,7 @@ import selenium
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
 from utils import utils as utils
+import logging as logger
 
 @pytest.mark.usefixtures("test_setup")
 @pytest.mark.tc1
@@ -23,6 +24,7 @@ class TestLoginLogout:
 
     def test_logout(self):
         """Sign out from the website"""
+        global driver
         try:
             driver = self.driver  # defines the driver imported from conftest file
             homepage = HomePage(driver)
@@ -56,4 +58,4 @@ class TestLoginLogout:
             raise
 
         else:
-            print("No exceptions occurred")
+            logger.error("Something went wrong")
