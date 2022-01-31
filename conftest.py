@@ -1,7 +1,8 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.webdriver import WebDriver
 
@@ -16,7 +17,8 @@ def test_setup(request):
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-        #driver = webdriver.Chrome(executable_path="drivers/chromedriver")
+#         s = Service(ChromeDriverManager().install())
+#         driver = webdriver.Chrome(service=s)
     elif browser == "firefox":
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
         #driver = webdriver.Firefox(executable_path="/drivers/geckodriver")
