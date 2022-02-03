@@ -32,7 +32,6 @@ class TestAdminPage:
         """Adding not existing user"""
         try:
             driver = self.driver  # defines the driver imported from conftest file
-            #faker = Faker()
             adminpage = AdminPage(driver)
             adminpage.click_admin_button()
 
