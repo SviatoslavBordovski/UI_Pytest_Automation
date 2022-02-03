@@ -3,7 +3,7 @@ import string
 import logging as logger
 import time
 import pytest
-from selenium.webdriver import Keys
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from pages.loginPage import LoginPage
 from pages.adminPage import AdminPage
