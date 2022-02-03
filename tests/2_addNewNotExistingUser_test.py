@@ -60,7 +60,7 @@ class TestAdminPage:
         time.sleep(1)
         adminpage.verify_saved_user()
 
-        # Find newly created user
+        # Find newly created user and click on the profile of found user (link to profile is shown)
         adminpage.search_new_saved_user(new_username)
         adminpage.click_search_button()
         found_user = driver.find_element(By.LINK_TEXT, new_username)
