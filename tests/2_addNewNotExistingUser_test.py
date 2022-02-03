@@ -43,6 +43,7 @@ class TestAdminPage:
         time.sleep(3)
         already_exists_error = driver.find_element(By.XPATH, "//*[@id='frmSystemUser']/fieldset/ol/li[3]/span")
 
+        # Check if such username exists and which error is shown
         if already_exists_error.text == "Already exists" or "Should have at least 5 characters" or None:
             username_field.send_keys(Keys.CONTROL + 'a', Keys.DELETE)
             name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
