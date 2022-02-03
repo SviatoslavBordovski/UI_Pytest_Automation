@@ -29,6 +29,7 @@ class TestLoginLogout:
             driver = self.driver  # defines the driver imported from conftest file
             homepage = HomePage(driver)
 
+            # Check present dashboard and logout from the page
             homepage.check_dashboard_visibility()
             time.sleep(3)
             homepage.click_welcome_button()
