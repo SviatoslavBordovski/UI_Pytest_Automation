@@ -10,7 +10,6 @@ from pages.loginPage import LoginPage
 from pages.adminPage import AdminPage
 from utils import utils as utils
 from pytest_html_reporter import attach
-#from faker import Faker
 #import moment
 #from selenium import webdriver
 #from selenium.webdriver.support.ui import Select
