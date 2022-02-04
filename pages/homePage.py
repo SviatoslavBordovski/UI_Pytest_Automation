@@ -24,4 +24,4 @@ class HomePage:
             dashboard_link.click()
             logger.info("Dashboard_link was clicked")
         else:
-            return logger.error("Something went wrong")
+            return logger.error("Dashboard link failed to be displayed")
