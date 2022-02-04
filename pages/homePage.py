@@ -22,6 +22,6 @@ class HomePage:
         if dashboard_graph.is_displayed():
             dashboard_link = self.driver.find_element(By.ID, self.dashboard_link_id)
             dashboard_link.click()
-            logger.info("Dashboard_link was clicked")
+            logger.info("Dashboard link was clicked")
         else:
             return logger.error("Dashboard link failed to be displayed")
