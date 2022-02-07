@@ -57,3 +57,9 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: fylein/python-pytest-github-action@24dcd8e6b37efdb9281fd21630a0eef8648bddb3
         #uses: fylein/python-pytest-github-action@v2
+        
+      - name: Publish Test Suite Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: test-results/**/*.html
