@@ -23,10 +23,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - uses: testspace-com/setup-testspace@v1
-        with:
-          domain: ${{github.repository_owner}}
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
@@ -61,12 +57,3 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: fylein/python-pytest-github-action@24dcd8e6b37efdb9281fd21630a0eef8648bddb3
         #uses: fylein/python-pytest-github-action@v2
-        
-      - name: Publish Results to Testspace
-        run: testspace [${{ matrix.os}}]./testcontent/*.xml
-        
-#       - name: Publish Test Suite Results
-#         uses: EnricoMi/publish-unit-test-result-action@v1
-#         if: always()
-#         with:
-#           files: test-results/**/*.html
