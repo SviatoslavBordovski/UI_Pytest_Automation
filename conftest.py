@@ -5,6 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.webdriver import WebDriver
+import logging as logger
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome", help="Type in Chrome or Firefox browser")
@@ -25,7 +26,7 @@ def test_setup(request):
     elif browser == "opera":
         driver = webdriver.Opera(executable_path="/drivers/operadriver")
     else:
-        print("Detected desktop browser is not supported, please contact AQA Team to learn more about raised issue")
+        logger.info("Such browser is not supported, please contact QA Automation Team to learn more about the issue")
 
     driver.implicitly_wait(10)
     driver.maximize_window()
@@ -33,4 +34,4 @@ def test_setup(request):
     yield
     driver.close()
     driver.quit()
-    print("Test suite has successfully passed!")
+    logger.info("Test execution finished")
