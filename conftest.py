@@ -7,7 +7,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="Type in browser Chrome or Firefox")
+    parser.addoption("--browser", action="store", default="chrome", help="Type in Chrome or Firefox browser")
 
 @pytest.fixture(scope="class")
 def test_setup(request):
