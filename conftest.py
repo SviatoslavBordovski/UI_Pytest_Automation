@@ -25,7 +25,7 @@ def test_setup(request):
     elif browser == "opera":
         driver = webdriver.Opera(executable_path="/drivers/operadriver")
     else:
-        print("Found desktop browser is not supported, please contact AQA Team to learn more about raised issue")
+        print("Detected desktop browser is not supported, please contact AQA Team to learn more about raised issue")
 
     driver.implicitly_wait(10)
     driver.maximize_window()
