@@ -14,11 +14,11 @@ def test_setup(request):
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-#         s = Service(ChromeDriverManager().install())
-#         driver = webdriver.Chrome(service=s)
+#         chrome_options = Options()
+#         chrome_options.add_argument('--headless')
+#         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        s = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=s)
     elif browser == "firefox":
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
         #driver = webdriver.Firefox(executable_path="/drivers/geckodriver")
