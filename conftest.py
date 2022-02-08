@@ -16,11 +16,11 @@ def test_setup(request):
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        chrome_options = Options()
+#         chrome_options = Options()
+#         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        ch = Service(ChromeDriverManager().install())  # does not work on ci, locally only
         chrome_options.add_argument('--headless')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-#         ch = Service(ChromeDriverManager().install())  # does not work on ci, locally only
-#         driver = webdriver.Chrome(service=ch)
+        driver = webdriver.Chrome(service=ch)
         logger.info("Chrome tests run has started")
         # driver = webdriver.Chrome(executable_path=r"path_to_driver")
     elif browser == "firefox":
