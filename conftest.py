@@ -20,7 +20,7 @@ def test_setup(request):
 #         chrome_options = Options()
 #         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
         ch = Service(ChromeDriverManager().install())  # does not work on ci, locally only
-        chrome_options.add_argument('--headless')
+        ch.add_argument('--headless')
         driver = webdriver.Chrome(service=ch)
         logger.info("Chrome tests run has started")
         # driver = webdriver.Chrome(executable_path=r"path_to_driver")
