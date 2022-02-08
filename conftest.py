@@ -2,29 +2,39 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.edge.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from webdriver_manager.opera import OperaDriverManager
 import logging as logger
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="Type in Chrome or Firefox browser")
+    parser.addoption("--browser", action="store", default="chrome", help="Type in browser Chrome or Firefox")
 
 @pytest.fixture(scope="class")
 def test_setup(request):
+    global driver
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-#         s = Service(ChromeDriverManager().install())
-#         driver = webdriver.Chrome(service=s)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        logger.info("Chrome tests run has started")
+        # driver = webdriver.Chrome(executable_path=r"C:\Users\sbord_iu0ld13\Downloads\imported files\coding\PytestFrameworkProject\drivers\chromedriver.exe")
     elif browser == "firefox":
-        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-        #driver = webdriver.Firefox(executable_path="/drivers/geckodriver")
-    elif browser == "opera":
-        driver = webdriver.Opera(executable_path="/drivers/operadriver")
+        driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
+        logger.info("Firefox tests run has started")
+        # driver = webdriver.Firefox(executable_path="/home/sviatoslav/PytestFrameworkProject/drivers/geckodriver")
+    elif browser == "edge":
+        driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager(log_level=20).install()))
+        logger.info("Edge tests run has started")
+    # elif browser == "opera":
+        # options = Options()
+        # options.add_argument('allow-elevated-browser')
+        # options.binary_location = "C:\\Users\\sbord_iu0ld13\\AppData\\Local\\Programs\\Opera\\opera.exe"
+        # driver = webdriver.Opera(executable_path=OperaDriverManager().install())
+        # logger.info("Opera tests run has started")
+        # driver = webdriver.Opera(executable_path="/home/sviatoslav/PytestFrameworkProject/drivers/operadriver")
     else:
         logger.info("Such browser is not supported, please contact QA Automation Team to learn more about the issue")
 
