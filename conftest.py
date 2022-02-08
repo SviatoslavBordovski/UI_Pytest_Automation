@@ -1,10 +1,8 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.edge.service import Service
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.opera import OperaDriverManager
 import logging as logger
@@ -18,8 +16,11 @@ def test_setup(request):
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        ch = Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=ch)
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+#         ch = Service(ChromeDriverManager().install())  # does not work on ci, locally only
+#         driver = webdriver.Chrome(service=ch)
         logger.info("Chrome tests run has started")
         # driver = webdriver.Chrome(executable_path=r"path_to_driver")
     elif browser == "firefox":
