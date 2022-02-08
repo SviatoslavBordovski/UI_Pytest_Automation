@@ -16,7 +16,7 @@ def test_setup(request):
     global driver
     browser = request.config.getoption("--browser")
 
- if browser == "chrome":
+    if browser == "chrome":
         from selenium.webdriver.chrome.options import Options
         # chrome_options = Options()
         # chrome_options.add_argument('--headless')
