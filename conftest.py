@@ -18,15 +18,19 @@ def test_setup(request):
     browser = request.config.getoption("--browser")
 
     if browser == "chrome":
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        ch = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=ch)
         logger.info("Chrome tests run has started")
-        # driver = webdriver.Chrome(executable_path=r"C:\Users\sbord_iu0ld13\Downloads\imported files\coding\PytestFrameworkProject\drivers\chromedriver.exe")
+        # driver = webdriver.Chrome(executable_path=r"path_to_driver")
     elif browser == "firefox":
-        driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
+        ff = Service(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=ff)
         logger.info("Firefox tests run has started")
-        # driver = webdriver.Firefox(executable_path="/home/sviatoslav/PytestFrameworkProject/drivers/geckodriver")
+        # driver = webdriver.Firefox(executable_path=r"path_to_driver")
     elif browser == "edge":
-        driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager(log_level=20).install()))
+        ed = Service(EdgeChromiumDriverManager(log_level=20).install())
+        driver = webdriver.Edge(service=ed)
+        # driver = webdriver.Edge(executable_path=r"path_to_driver")
         logger.info("Edge tests run has started")
     # elif browser == "opera":
         # options = Options()
