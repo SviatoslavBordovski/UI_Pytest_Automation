@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
@@ -18,9 +17,6 @@ def test_setup(request):
 
     if browser == "chrome":
         from selenium.webdriver.chrome.options import Options
-        # chrome_options = Options()
-        # chrome_options.add_argument('--headless')
-        # driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
         ch = Service(ChromeDriverManager().install())
         chrome_options = Options()
         chrome_options.add_argument('--headless')
@@ -33,17 +29,16 @@ def test_setup(request):
         ff_options = Options()
         ff_options.add_argument('--headless')
         driver = webdriver.Firefox(service=ff, options=ff_options)
-        # driver = webdriver.Firefox(GeckoDriverManager().install(), options=ff_options)
         logger.info("Firefox tests run has started")
-        # driver = webdriver.Firefox(executable_path=r"path_to_driver")
+        # driver = webdriver.Firefox(GeckoDriverManager().install(), options=ff_options)
     elif browser == "edge":
         from selenium.webdriver.edge.options import Options
         ed = Service(EdgeChromiumDriverManager(log_level=20).install())
         edge_options = Options()
         edge_options.add_argument('--headless')
         driver = webdriver.Edge(service=ed, options=edge_options)
-        # driver = webdriver.Edge(executable_path=r"path_to_driver")
         logger.info("Edge tests run has started")
+        # driver = webdriver.Edge(executable_path=r"path_to_driver")
     # elif browser == "opera":
         # options = Options()
         # options.add_argument('allow-elevated-browser')
