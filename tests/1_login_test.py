@@ -23,7 +23,7 @@ class TestLoginLogout:
                              )
     def test_login(self, username, password):
         """Sign in to the website"""
-        driver = self.driver   #defines the driver imported from conftest file
+        driver = self.driver   # defines the driver imported from conftest file
         driver.get(utils.URL)
         login = LoginPage(driver)
 
