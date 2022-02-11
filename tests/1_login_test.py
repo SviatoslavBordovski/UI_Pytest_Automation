@@ -10,7 +10,7 @@ from pytest_html_reporter import attach
 # import allure
 # import moment
 
-@pytest.mark.usefixtures("test_setup")
+@pytest.mark.usefixtures("login_test_setup")
 @pytest.mark.tc1
 class TestLoginLogout:
     @pytest.mark.parametrize("username, password",
@@ -56,7 +56,7 @@ class TestLoginLogout:
             login.panel_header_check()
 
         except AssertionError as error:
-            print("This test should be failed due to assertion error")
+            logger.error("This test should be failed due to assertion error")
             print(error)
             attach(data=self.driver.get_screenshot_as_png())
             # currentTime = moment.now().strftime("_%d-%m-%Y_%H-%M-%S")  #moment library starts magic here :)
@@ -68,7 +68,7 @@ class TestLoginLogout:
             raise
 
         except selenium.common.exceptions.NoSuchElementException as error:
-            print("Logout button was not found but test has been passed because it is allowed to fail")
+            logger.error("Logout button was not found but test has been passed because it is allowed to fail")
             print(error)
             attach(data=self.driver.get_screenshot_as_png())
             # currentTime = moment.now().strftime("_%d-%m-%Y_%H-%M-%S")  # moment library starts magic here :)
