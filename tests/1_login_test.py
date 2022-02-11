@@ -78,6 +78,7 @@ class TestLoginLogout:
             #               attachment_type=allure.attachment_type.PNG)
             # driver.get_screenshot_as_file("/home/sviatoslav/PytestFrameworkProject/screenshots/" + screenshotName + ".png")
             raise
+            
         else:
             logger.info("In case if something mysterious happens => please check logs in CLI")
             attach(data=self.driver.get_screenshot_as_png())
