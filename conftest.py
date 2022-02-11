@@ -20,7 +20,7 @@ def test_setup(request):
         ch = Service(ChromeDriverManager().install())
         chrome_options = Options()
         chrome_options.add_argument('--headless')
-        driver = webdriver.Chrome(service=ch, chrome_options=chrome_options)
+        driver = webdriver.Chrome(service=ch, options=chrome_options)
         logger.info("Chrome tests run has started")
         # driver = webdriver.Chrome(executable_path=r"path_to_driver")
     elif browser == "firefox":
