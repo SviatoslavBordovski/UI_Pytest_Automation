@@ -24,11 +24,12 @@ class TestAdminPage:
         login.enter_password(utils.PASSWORD)
         login.click_login_button()
 
-    def test_addUser(self):
-        """Adding not existing user and check if it was added"""
+    def test_addUser(self):  # PARAMETRIZE THIS TEST !!!
+        """Adding not existing user"""
         try:
             driver = self.driver  # defines the driver imported from conftest file
             adminpage = AdminPage(driver)
+            time.sleep(3)
             adminpage.click_admin_button()
 
             # Fill form
@@ -47,6 +48,7 @@ class TestAdminPage:
                 logger.info("Randomly generated username ===> : " + str(name))
                 new_username = name
                 username_field.send_keys(new_username)
+                assert len(new_username) == 10
 
             adminpage.click_status_dropdown()
             adminpage.choose_disabled_option()
@@ -65,6 +67,7 @@ class TestAdminPage:
             assert found_username_in_the_list == name, f"New generated username returned wrong response. Username is: {name}"
             time.sleep(3)
             found_user.click()
+
         except AssertionError as error:
             logger.error("This test could be failed due to assertion error")
             print(error)
