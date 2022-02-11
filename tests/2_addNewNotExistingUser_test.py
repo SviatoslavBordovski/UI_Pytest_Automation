@@ -11,18 +11,9 @@ from pages.adminPage import AdminPage
 from utils import utils as utils
 from pytest_html_reporter import attach
 
-@pytest.mark.usefixtures("test_setup")
+@pytest.mark.usefixtures("standard_test_setup_teardown")
 @pytest.mark.tc2
 class TestAdminPage:
-
-    def test_login(self):
-        """Sign in to the website"""
-        driver = self.driver   #defines the driver imported from conftest file
-        driver.get(utils.URL)
-        login = LoginPage(driver)
-        login.enter_username(utils.USERNAME)
-        login.enter_password(utils.PASSWORD)
-        login.click_login_button()
 
     def test_addUser(self):  # PARAMETRIZE THIS TEST !!!
         """Adding not existing user"""
@@ -79,6 +70,7 @@ class TestAdminPage:
             print(error)
             attach(data=self.driver.get_screenshot_as_png())
             raise
+
         else:
             logger.info("In case if something mysterious happens => please check logs in CLI")
             attach(data=self.driver.get_screenshot_as_png())
