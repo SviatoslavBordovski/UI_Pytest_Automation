@@ -1,6 +1,7 @@
 import time
 import pytest
 import selenium
+from selenium.common.exceptions import NoSuchElementException
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
 from utils import utils as utils
@@ -18,15 +19,22 @@ class TestLoginLogout:
                                  pytest.param("random_username", "admin123",
                                               marks=pytest.mark.xfail(reason="Non-existing username entered")),
                                  pytest.param("Admin", "qwerty123!",
-                                              marks=pytest.mark.xfail(reason="Incorrect password entered"))
+                                              marks=pytest.mark.xfail(reason="Incorrect password entered")),
+                                 pytest.param("qwertyADMIN", "qwertyADMIN",
+                                              marks=pytest.mark.xfail(reason="Wrong credentials")),
+                                 pytest.param("", "admin123",
+                                              marks=pytest.mark.xfail(reason="Empty username")),
+                                 pytest.param("Admin", "",
+                                              marks=pytest.mark.xfail(reason="Empty password")),
+                                 pytest.param("", "",
+                                              marks=pytest.mark.xfail(reason="Empty credentials"))
                              ]
                              )
     def test_login(self, username, password):
         """Sign in to the website"""
-        driver = self.driver   # defines the driver imported from conftest file
+        driver = self.driver   #defines the driver imported from conftest file
         driver.get(utils.URL)
         login = LoginPage(driver)
-
         login.panel_header_check()
         login.enter_username(username)
         login.enter_password(password)
@@ -40,10 +48,11 @@ class TestLoginLogout:
             homepage = HomePage(driver)
             login = LoginPage(driver)
 
-            homepage.check_dashboard_visibility()
             time.sleep(3)
+            homepage.check_dashboard_visibility()
             homepage.click_welcome_button()
             homepage.click_logout_button()
+            time.sleep(3)
             login.panel_header_check()
 
         except AssertionError as error:
