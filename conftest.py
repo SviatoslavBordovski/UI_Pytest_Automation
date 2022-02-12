@@ -97,7 +97,7 @@ def standard_test_setup_teardown(request):
         # driver = webdriver.Edge(executable_path=r"path_to_driver")
         logger.info("Edge tests run has started")
     else:
-        logger.info("Such browser is not supported, please contact QA Automation Team to learn more about the issue")
+        logger.info("Browser is not supported, please contact QA Automation Team to learn more about the issue")
 
     driver.get(utils.URL)
     logger.info("Website has been opened")
