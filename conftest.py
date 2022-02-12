@@ -122,7 +122,7 @@ def standard_test_setup_teardown(request):
         homepage.click_logout_button()
         time.sleep(3)
         login_page.panel_header_check()
-        logger.info("User has logged out and was redirected to Login Page")
+        logger.info("User has logged out and was redirected to Login Page automatically")
 
     except AttributeError as error:
         logger.error("Locator issue")
