@@ -23,7 +23,7 @@ class TestAdminPage:
             time.sleep(3)
             adminpage.click_admin_button()
 
-            # Fill form
+            # Fill new user form
             adminpage.click_addUser_button()
             adminpage.click_userRole_button()
             adminpage.enter_employeeName(utils.employeeNAME)
