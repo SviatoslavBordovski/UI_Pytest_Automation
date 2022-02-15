@@ -37,7 +37,6 @@ def login_test_setup(request):
         ff_options = Options()
         ff_options.add_argument('--headless')
         driver = webdriver.Firefox(service=ff, options=ff_options)
-        # driver = webdriver.Firefox(GeckoDriverManager().install(), options=ff_options)
         logger.info("Firefox tests run has started")
         # driver = webdriver.Firefox(executable_path=r"path_to_driver")
     elif browser == "edge":
