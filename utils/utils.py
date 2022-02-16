@@ -1,12 +1,13 @@
-#Constants file
+#Constants
 import inspect
 
 URL = "https://opensource-demo.orangehrmlive.com/"
 USERNAME = "Admin"
 PASSWORD = "admin123"
 employeeNAME = "Charlie Carter"
-newUSERNAME = "qwerty2024"
+newUSERNAME = "2021"
 strongPASSWORD = "q1w2e3r4t5y6u7i8o9!~!"
+forgotPassword = "Forgot your password?"
 
 def whoami():
     return inspect.stack()[1][3]
