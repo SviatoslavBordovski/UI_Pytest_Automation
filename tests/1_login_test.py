@@ -35,7 +35,11 @@ class TestLoginLogout:
         driver = self.driver   #defines the driver imported from conftest file
         driver.get(utils.URL)
         login = LoginPage(driver)
+        login_page_asserts = LoginAsserts(driver)
         login.panel_header_check()
+        login_page_asserts.assert_login_page_contains_logo_image()
+
+        login_page_asserts.assert_forgot_password_link_displayed()
         login.enter_username(username)
         login.enter_password(password)
         login.click_login_button()
