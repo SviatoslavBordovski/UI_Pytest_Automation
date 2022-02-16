@@ -2,6 +2,7 @@ import time
 import pytest
 import selenium
 from selenium.common.exceptions import NoSuchElementException
+from asserts.login_page_asserts import LoginAsserts
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
 from utils import utils as utils
