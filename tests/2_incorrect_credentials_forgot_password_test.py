@@ -20,23 +20,12 @@ class TestForgotPassword:
             login_page_asserts = LoginAsserts(driver)
 
             # Check if panel header, logo image and 'forgot password' link are present
-            login_page.panel_header_check()
+            login_page_asserts.panel_header_check()
             login_page_asserts.assert_login_page_contains_logo_image()
             login_page_asserts.assert_forgot_password_link_displayed()
 
-            # Fill credentials
-            login_page.enter_username("username")
-            login_page.enter_password("password")
-            login_page.click_login_button()
-
-            # Check changed url
-            current_url = driver.current_url
-            assert current_url == utils.expectedInvalidCredentialsUrl
-
-            if login_page.shown_invalid_credentials_flag():
-                login_page.click_forgot_password_link()
-            else:
-                logger.error("Invalid credentials flag is not visible")
+            # Login with empty credentials, then with wrong credentials and check 'forgot password' form works
+            login_page.sign_in_with_empty_or_incorrect_credentials()
 
         except AssertionError as error:
             logger.error("This test failed due to assertion error")
