@@ -1,6 +1,7 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 import utils.utils
+import logging as logger
 
 class LoginPage:
 
@@ -10,7 +11,6 @@ class LoginPage:
         self.username_textbox_id = "txtUsername"
         self.password_textbox_id = "txtPassword"
         self.login_button_id = "btnLogin"
-        self.login_header_id = "logInPanelHeading"
         self.invalid_credentials_flag_id = "spanMessage"
         self.forgot_password_linktext = "Forgot your password?"
 
@@ -25,14 +25,31 @@ class LoginPage:
     def click_login_button(self):
         self.driver.find_element(By.ID, self.login_button_id).click()
 
-    def panel_header_check(self):
-        title = self.driver.find_element(By.ID, self.login_header_id).text
-        assert "LOGIN Panel" == title
-
-    def shown_invalid_credentials_flag(self):
-        invalid_credentials_flag = self.driver.find_element(By.ID, self.invalid_credentials_flag_id).text
-        assert invalid_credentials_flag == utils.utils.expectedInvalidCredentialsFlag
-
     def click_forgot_password_link(self):
-        forgot_password_link = self.driver.find_element(By.LINK_TEXT, self.forgot_password_linktext).click()
-        forgot_password_link.is_selected()
+        self.driver.find_element(By.LINK_TEXT, self.forgot_password_linktext).click()
+
+    def sign_in_with_empty_or_incorrect_credentials(self):
+        """ Login with empty credentials, login with wrong credentials, verify flags were shown, user clicked on \
+        'Forgot your password link' and was redirected to 'Reset Password' form """
+        self.click_login_button()
+        credentials_flag = self.driver.find_element(By.ID, self.invalid_credentials_flag_id).text
+        logger.info("Credentials flag was fetched")
+        if credentials_flag == utils.utils.expectedEmptyCredentialsFlag:
+            assert len(credentials_flag) == 24
+            entered_username = self.enter_username("username")
+            entered_password = self.enter_password("password")
+            logger.info("Incorrect credentials entered")
+            if entered_username is not int and entered_password is not int:
+                self.click_login_button()
+                logger.info("'Login' button was clicked")
+                current_url = self.driver.current_url
+                assert current_url == utils.utils.expectedInvalidCredentialsUrl
+                invalid_credentials_flag = utils.utils.expectedInvalidCredentialsFlag
+                if invalid_credentials_flag:
+                    assert len(invalid_credentials_flag) == 19
+                    self.click_forgot_password_link()
+                    current_url = self.driver.current_url
+                    assert current_url == utils.utils.forgotPasswordFormUrl
+                    logger.info("'Forgot your password' link was clicked and user was redirected to 'Reset Password' form")
+
+                    # >>> FINISH TEST <<<
