@@ -3,6 +3,7 @@ import pytest
 import selenium
 import logging as logger
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service
@@ -10,13 +11,14 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.edge.service import Service
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.opera import OperaDriverManager
+from asserts.login_page_asserts import LoginAsserts
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
 from utils import utils
 from pytest_html_reporter import attach
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="Type in CLI browser Chrome or Firefox")
+    parser.addoption("--browser", action="store", default="chrome", help="Type in CLI --browser=Chrome or Firefox")
 
 @pytest.fixture(scope="class")
 def login_test_setup(request):
@@ -37,6 +39,7 @@ def login_test_setup(request):
         ff_options = Options()
         ff_options.add_argument('--headless')
         driver = webdriver.Firefox(service=ff, options=ff_options)
+        # driver = webdriver.Firefox(GeckoDriverManager().install(), options=ff_options)
         logger.info("Firefox tests run has started")
         # driver = webdriver.Firefox(executable_path=r"path_to_driver")
     elif browser == "edge":
@@ -96,7 +99,7 @@ def standard_test_setup_teardown(request):
         # driver = webdriver.Edge(executable_path=r"path_to_driver")
         logger.info("Edge tests run has started")
     else:
-        logger.info("Browser is not supported, please contact QA Automation Team to learn more about the issue")
+        logger.info("Such browser is not supported, please contact QA Automation Team to learn more about the issue")
 
     driver.get(utils.URL)
     logger.info("Website has been opened")
@@ -117,11 +120,12 @@ def standard_test_setup_teardown(request):
 
     try:
         homepage = HomePage(driver)
+        login_page_asserts = LoginAsserts(driver)
         homepage.click_welcome_button()
         homepage.click_logout_button()
         time.sleep(3)
-        login_page.panel_header_check()
-        logger.info("User has logged out and was redirected to Login Page automatically")
+        login_page_asserts.panel_header_check()
+        logger.info("User has logged out and was redirected to Login Page")
 
     except AttributeError as error:
         logger.error("Locator issue")
