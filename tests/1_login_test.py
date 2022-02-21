@@ -33,11 +33,11 @@ class TestLoginLogout:
                              )
     def test_login(self, username, password):
         """Sign in to the website"""
-        driver = self.driver   #defines the driver imported from conftest file
+        driver = self.driver
         driver.get(utils.URL)
         login = LoginPage(driver)
         login_page_asserts = LoginAsserts(driver)
-        login.panel_header_check()
+        login_page_asserts.panel_header_check()
         login_page_asserts.assert_login_page_contains_logo_image()
 
         login_page_asserts.assert_forgot_password_link_displayed()
@@ -49,16 +49,16 @@ class TestLoginLogout:
         """Sign out from the website"""
         global driver
         try:
-            driver = self.driver  # defines the driver imported from conftest file
+            driver = self.driver  # defines the driver imported from conftest.py file
             homepage = HomePage(driver)
-            login = LoginPage(driver)
+            login_page_asserts = LoginAsserts(driver)
 
             time.sleep(3)
             homepage.check_dashboard_visibility()
             homepage.click_welcome_button()
             homepage.click_logout_button()
             time.sleep(3)
-            login.panel_header_check()
+            login_page_asserts.panel_header_check()
 
         except AssertionError as error:
             logger.error("This test should be failed due to assertion error")
@@ -83,7 +83,7 @@ class TestLoginLogout:
             #               attachment_type=allure.attachment_type.PNG)
             # driver.get_screenshot_as_file("/home/sviatoslav/PytestFrameworkProject/screenshots/" + screenshotName + ".png")
             raise
-            
+
         else:
             logger.info("In case if something mysterious happens => please check logs in CLI")
             attach(data=self.driver.get_screenshot_as_png())
