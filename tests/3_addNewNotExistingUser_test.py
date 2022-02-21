@@ -4,15 +4,15 @@ import logging as logger
 import time
 import pytest
 import selenium
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from pages.loginPage import LoginPage
 from pages.adminPage import AdminPage
 from utils import utils as utils
 from pytest_html_reporter import attach
 
 @pytest.mark.usefixtures("standard_test_setup_teardown")
-@pytest.mark.tc2
+@pytest.mark.tc3
 class TestAdminPage:
 
     def test_addUser(self):  # PARAMETRIZE THIS TEST !!!
@@ -23,7 +23,7 @@ class TestAdminPage:
             time.sleep(3)
             adminpage.click_admin_button()
 
-            # Fill new user form
+            # Fill form
             adminpage.click_addUser_button()
             adminpage.click_userRole_button()
             adminpage.enter_employeeName(utils.employeeNAME)
@@ -60,13 +60,19 @@ class TestAdminPage:
             found_user.click()
 
         except AssertionError as error:
-            logger.error("This test could be failed due to assertion error")
+            logger.error("This test failed due to assertion error")
+            print(error)
+            attach(data=self.driver.get_screenshot_as_png())
+            raise
+
+        except AttributeError as error:
+            logger.error("Locator issue")
             print(error)
             attach(data=self.driver.get_screenshot_as_png())
             raise
 
         except selenium.common.exceptions.NoSuchElementException as error:
-            logger.error("Logout button was not found, please check the issue locally")
+            logger.error("Driver not able to find some element")
             print(error)
             attach(data=self.driver.get_screenshot_as_png())
             raise
