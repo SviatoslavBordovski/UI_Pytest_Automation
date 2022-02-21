@@ -33,8 +33,14 @@ class TestForgotPassword:
             attach(data=self.driver.get_screenshot_as_png())
             raise
 
+        except AttributeError as error:
+            logger.error("Locator issue")
+            print(error)
+            attach(data=self.driver.get_screenshot_as_png())
+            raise
+
         except selenium.common.exceptions.NoSuchElementException as error:
-            logger.error("Logout button was not found but test has been passed because it is allowed to fail")
+            logger.error("Driver not able to find some element")
             print(error)
             attach(data=self.driver.get_screenshot_as_png())
             raise
