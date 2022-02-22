@@ -134,7 +134,7 @@ def standard_test_setup_teardown(request):
         raise
 
     except selenium.common.exceptions.NoSuchElementException as error:
-        logger.error("Issue with some element")
+        logger.error("Locator was not shown or found by driver")
         print(error)
         attach(data=driver.get_screenshot_as_png())
         raise
