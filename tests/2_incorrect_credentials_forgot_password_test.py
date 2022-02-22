@@ -40,7 +40,7 @@ class TestForgotPassword:
             raise
 
         except selenium.common.exceptions.NoSuchElementException as error:
-            logger.error("Driver not able to find some element")
+            logger.error("Locator was not shown or found by driver")
             print(error)
             attach(data=self.driver.get_screenshot_as_png())
             raise
