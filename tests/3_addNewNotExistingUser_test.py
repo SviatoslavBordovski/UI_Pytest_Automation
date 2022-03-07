@@ -80,3 +80,4 @@ class TestAdminPage:
         else:
             logger.info("In case if something mysterious happens => please check logs in CLI")
             attach(data=self.driver.get_screenshot_as_png())
+  
