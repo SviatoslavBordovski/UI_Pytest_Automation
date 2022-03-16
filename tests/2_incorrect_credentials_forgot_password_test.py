@@ -12,7 +12,7 @@ from pytest_html_reporter import attach
 class TestForgotPassword:
 
     def test_forgot_password_feature(self):
-        """Sign in to the website"""
+        """Sign in to the CRM website"""
         try:
             driver = self.driver
             driver.get(utils.URL)
