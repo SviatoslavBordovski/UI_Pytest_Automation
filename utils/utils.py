@@ -1,4 +1,4 @@
-#Constants
+# Constants
 import inspect
 
 URL = "https://opensource-demo.orangehrmlive.com/"
