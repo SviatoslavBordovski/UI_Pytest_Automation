@@ -102,7 +102,7 @@ def standard_test_setup_teardown(request):
         logger.info("Such browser is not supported, please contact QA Automation Team to learn more about the issue")
 
     driver.get(utils.URL)
-    logger.info("Website has been opened")
+    logger.info("Requested website has been opened")
     actual_login_page_title = driver.title
     assert actual_login_page_title == 'OrangeHRM'
 
