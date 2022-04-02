@@ -15,7 +15,7 @@ from pytest_html_reporter import attach
 @pytest.mark.tc3
 class TestAdminPage:
 
-    def test_addUser(self):  # PARAMETRIZE THIS TEST !!!
+    def test_addUser(self):  # PARAMETRIZE THIS TEST !!! 
         """Adding not existing user"""
         try:
             driver = self.driver  # defines the driver imported from conftest file
