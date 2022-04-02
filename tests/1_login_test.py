@@ -49,7 +49,7 @@ class TestLoginLogout:
         """Sign out from the website"""
         global driver
         try:
-            driver = self.driver  # defines the driver imported from conftest.py file
+            driver = self.driver  # defines the driver imported from conftest.py module
             homepage = HomePage(driver)
             login_page_asserts = LoginAsserts(driver)
 
