@@ -138,7 +138,7 @@ def standard_test_setup_teardown(request):
         print(error)
         attach(data=driver.get_screenshot_as_png())
         raise
-
+   
     else:
         logger.info("Teardown point reached")
         attach(data=driver.get_screenshot_as_png())
