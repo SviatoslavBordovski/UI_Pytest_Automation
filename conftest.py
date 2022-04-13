@@ -112,7 +112,7 @@ def standard_test_setup_teardown(request):
     login_page.click_login_button()
     logger.info("User logged in")
 
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(30)
     driver.maximize_window()
     request.cls.driver = driver
 
