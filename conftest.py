@@ -90,6 +90,7 @@ def standard_test_setup_teardown(request):
         driver = webdriver.Firefox(service=ff, options=ff_options)
         logger.info("Firefox tests run has started")
         # driver = webdriver.Firefox(executable_path=r"path_to_driver")
+        
     elif browser == "edge":
         from selenium.webdriver.edge.options import Options
         ed = Service(EdgeChromiumDriverManager(log_level=20).install())
@@ -98,6 +99,7 @@ def standard_test_setup_teardown(request):
         driver = webdriver.Edge(service=ed, options=edge_options)
         # driver = webdriver.Edge(executable_path=r"path_to_driver")
         logger.info("Edge tests run has started")
+        
     else:
         logger.info("Such browser is not supported, please contact QA Automation Team to learn more about the issue")
 
