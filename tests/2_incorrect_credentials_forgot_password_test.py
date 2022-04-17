@@ -26,6 +26,8 @@ class TestForgotPassword:
 
             # Login with empty credentials, then login with wrong credentials and check if 'forgot password' form works
             login_page.sign_in_with_empty_or_incorrect_credentials()
+            login_page.cancel_fill_forgot_password_form(utils.forgotPasswordTitle)
+            login_page.fill_forgot_password_form(utils.employeeNAME)
 
         except AssertionError as error:
             logger.error("This test failed due to assertion error")
