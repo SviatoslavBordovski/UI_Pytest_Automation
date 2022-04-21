@@ -19,7 +19,7 @@ class TestForgotPassword:
             login_page = LoginPage(driver)
             login_page_asserts = LoginAsserts(driver)
 
-            # Check if panel header, logo image and 'forgot password' link are present
+            # Check if panel header, logo image and 'forgot password' link are present on login page
             login_page_asserts.panel_header_check()
             login_page_asserts.assert_login_page_contains_logo_image()
             login_page_asserts.assert_forgot_password_link_displayed()
