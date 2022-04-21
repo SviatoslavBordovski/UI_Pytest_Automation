@@ -48,5 +48,5 @@ class TestForgotPassword:
             raise
 
         else:
-            logger.info("In case if something mysterious happens => please check logs in CLI")
+            logger.info("In case if something mysterious happens => please check logs in the CLI")
             attach(data=self.driver.get_screenshot_as_png())
