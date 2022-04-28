@@ -1,10 +1,11 @@
 import time
+import utils.utils
+import logging as logger
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-import utils.utils
-import logging as logger
+
 
 class LoginPage:
 
