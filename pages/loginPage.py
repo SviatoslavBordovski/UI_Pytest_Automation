@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
@@ -31,6 +32,7 @@ class LoginPage:
 
     def click_login_button(self):
         self.driver.find_element(By.ID, self.login_button_id).click()
+        time.sleep(3)
 
     def click_forgot_password_link(self):
         self.driver.find_element(By.LINK_TEXT, self.forgot_password_linktext).click()
