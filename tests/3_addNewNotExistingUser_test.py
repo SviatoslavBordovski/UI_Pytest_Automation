@@ -9,13 +9,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from pages.adminPage import AdminPage
 from utils import utils as utils
-from pytest_html_reporter import attach
 
 @pytest.mark.usefixtures("standard_test_setup_teardown")
 @pytest.mark.tc3
+@pytest.mark.regression
 class TestAdminPage:
 
-    def test_addUser(self):  # PARAMETRIZE THIS TEST !!! 
+    def test_addUser(self):  # PARAMETRIZE THIS TEST !!!
         """Adding not existing user"""
         try:
             driver = self.driver  # defines the driver imported from conftest file
@@ -23,7 +23,7 @@ class TestAdminPage:
             time.sleep(3)
             adminpage.click_admin_button()
 
-            # Fill new user form
+            # Fill form
             adminpage.click_addUser_button()
             adminpage.click_userRole_button()
             adminpage.enter_employeeName(utils.employeeNAME)
@@ -36,10 +36,10 @@ class TestAdminPage:
             if already_exists_error.text == "Already exists" or "Should have at least 5 characters" or None:
                 username_field.send_keys(Keys.CONTROL + 'a', Keys.DELETE)
                 name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-                logger.info("Randomly generated username ===> : " + str(name))
+                logger.info("Randomly generated username ===> : " + " test_user_" + str(name) + "@github.com")
                 new_username = name
                 username_field.send_keys(new_username)
-                assert len(new_username) == 10
+                assert len(new_username) == 10, f"Found username length is {len(new_username)}"
 
             adminpage.click_status_dropdown()
             adminpage.choose_disabled_option()
@@ -59,24 +59,13 @@ class TestAdminPage:
             time.sleep(3)
             found_user.click()
 
-        except AssertionError as error:
-            logger.error("This test failed due to assertion error")
-            print(error)
-            attach(data=self.driver.get_screenshot_as_png())
-            raise
-
-        except AttributeError as error:
+        except AttributeError as error:  # refactor exceptions https://youtu.be/KX5miQRROJU
             logger.error("Locator issue")
-            print(error)
-            attach(data=self.driver.get_screenshot_as_png())
-            raise
+            raise error
 
         except selenium.common.exceptions.NoSuchElementException as error:
             logger.error("Locator was not shown or found by driver")
-            print(error)
-            attach(data=self.driver.get_screenshot_as_png())
-            raise
+            raise error
 
         else:
             logger.info("In case if something mysterious happens => please check logs in CLI")
-            attach(data=self.driver.get_screenshot_as_png())
