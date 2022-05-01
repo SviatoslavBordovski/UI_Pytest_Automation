@@ -6,29 +6,14 @@ from asserts.login_page_asserts import LoginAsserts
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
 from utils import utils as utils
+from tc_params import login_params
 import logging as logger
-# from pytest_html_reporter import attach
-# import allure
-# import moment
 
 @pytest.mark.usefixtures("login_test_setup")
 @pytest.mark.tc1
 class TestLoginLogout:
-    @pytest.mark.parametrize("username, password",
-                             [
-                                 ("Admin", "admin123"),
-                                 pytest.param("random_username", "admin123",
-                                              marks=pytest.mark.xfail(reason="Non-existing username entered")),
-                                 pytest.param("Admin", "qwerty123!",
-                                              marks=pytest.mark.xfail(reason="Incorrect password entered")),
-                                 pytest.param("qwertyADMIN", "qwertyADMIN",
-                                              marks=pytest.mark.xfail(reason="Wrong credentials")),
-                                 pytest.param(" ", "admin123",
-                                              marks=pytest.mark.xfail(reason="Empty username")),
-                                 pytest.param("Admin", " ",
-                                              marks=pytest.mark.xfail(reason="Empty password"))
-                             ]
-                             )
+
+    @pytest.mark.parametrize("username, password", login_params.first_tc_login_params())
     def test_login(self, username, password):
         """Sign in to the website"""
         driver = self.driver
@@ -42,8 +27,7 @@ class TestLoginLogout:
         login_page_asserts.assert_login_page_contains_logo_image()
         login_page_asserts.assert_forgot_password_link_displayed()
 
-        login.enter_username(username)
-        login.enter_password(password)
+        login.login_crm_system(username, password)
         login.click_login_button()
         homepage.check_dashboard_visibility()
 
