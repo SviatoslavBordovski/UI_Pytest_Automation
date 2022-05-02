@@ -55,7 +55,7 @@ jobs:
           
       - name: Regression Test Suite
         working-directory: ./tests
-        run: pytest -v --html=reports/reports.html
+        run: pytest -v --junitxml=reports/report.xml
         
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
