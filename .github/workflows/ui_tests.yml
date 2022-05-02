@@ -46,7 +46,7 @@ jobs:
         run: pip install webdriver-manager
         
       - name: Install Pytest HTML Reporter
-        run: pip install pytest-html-reporter
+        run: pip install pytest-html
         
       - name: Where am I?
         run: ls -la
