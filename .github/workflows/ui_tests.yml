@@ -48,8 +48,8 @@ jobs:
       - name: Install PyTest framework
         run: pip install pytest
         
-      - name: Install pytest-xdist plugin
-        run: pip install pytest-xdist
+      - name: Install pytest-split plugin
+        run: pip install pytest-split
       
       - name: Install WebdriverManager
         run: pip install webdriver-manager
