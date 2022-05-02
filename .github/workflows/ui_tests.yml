@@ -56,6 +56,12 @@ jobs:
       - name: Regression Test Suite
         working-directory: ./tests
         run: pytest -v --html=reports/reports.html
+        
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Install HTML Reporter for PyTest
+          path: reports/report.html
         # You may pin to the exact commit or the version.
         # uses: fylein/python-pytest-github-action@24dcd8e6b37efdb9281fd21630a0eef8648bddb3
         #uses: fylein/python-pytest-github-action@v2
