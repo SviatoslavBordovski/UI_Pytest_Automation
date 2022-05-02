@@ -1,4 +1,4 @@
-# Constants
+#Constants
 import inspect
 
 URL = "https://opensource-demo.orangehrmlive.com/"
@@ -17,4 +17,3 @@ cancelForgotPasswordUrl = "https://opensource-demo.orangehrmlive.com/index.php/a
 
 def whoami():
     return inspect.stack()[1][3]
- 
