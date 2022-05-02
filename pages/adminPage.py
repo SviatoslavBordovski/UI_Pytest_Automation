@@ -29,6 +29,7 @@ class AdminPage:
         self.username_search_button = "searchBtn"  #click to find
         self.found_new_username = "qwerty2018"
         self.new_created_user = "//a[text()='%s']"
+        self.new_user_success_label_xpath = "//div[@class='message success fadable']"
 
     def click_admin_button(self):
         self.driver.find_element(By.ID, self.view_users_button_id).click()
@@ -68,6 +69,7 @@ class AdminPage:
         self.driver.find_element(By.ID, self.confirm_password_textbox_id).send_keys(confirmed_password)
 
     def click_save_button(self):
+        time.sleep(3)
         self.driver.find_element(By.ID, self.save_newUser_button_id).click()
 
     def verify_opened_users_list(self):
@@ -84,7 +86,12 @@ class AdminPage:
     def verify_found_new_user(self):
         self.driver.find_element(By.LINK_TEXT, self.found_new_username).click()
 
-    def add_new_user(self, employee_name):
+    def check_saved_user_success_label_shown(self):
+        time.sleep(1)
+        shown_label = self.driver.find_element(By.XPATH, self.new_user_success_label_xpath).is_displayed()
+        assert shown_label is True, f"ERROR! Actual found label boolean => {shown_label}"
+
+    def add_new_user(self, employee_name, new_password, confirm_password):
         self.click_admin_button()
 
         # Fill form
@@ -92,7 +99,7 @@ class AdminPage:
         self.click_userRole_button()
         self.enter_employeeName(employee_name)
         self.employeeName_not_found()
-        username_field = self.driver.find_element(By.ID, "systemUser_userName")
+        username_field = self.driver.find_element(By.ID, self.new_username_textbox_id)
         username_field.send_keys(utils.newUSERNAME)
         already_exists_error = self.driver.find_element(By.XPATH, "//*[@id='frmSystemUser']/fieldset/ol/li[3]/span")
 
@@ -101,14 +108,13 @@ class AdminPage:
             new_username: str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
             logger.info("Randomly generated username ===> : " + " test_user_" + str(new_username) + "@github.com")
             username_field.send_keys(new_username)
-            assert len(new_username) == 10, f"Found username length is {len(new_username)}"
+            assert len(new_username) == 10, f"Actual found username length is {len(new_username)}"
 
         self.choose_disabled_option()
-        self.enter_password(utils.strongPASSWORD)
-        self.confirm_password(utils.strongPASSWORD)
-        time.sleep(1)
+        self.enter_password(new_password)
+        self.confirm_password(confirm_password)
         self.click_save_button()
-        # add assert func about 'successfully saved' label show up
+        self.check_saved_user_success_label_shown()
         self.search_new_saved_user(new_username)
         self.find_newly_created_user(new_username)
 
