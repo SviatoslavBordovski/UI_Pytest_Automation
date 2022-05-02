@@ -43,7 +43,7 @@ jobs:
         run: pip install pytest
         
       - name: Install pytest-xdist plugin
-        run: pip install pytest-xdist == 2.5.0
+        run: pip install pytest-xdist
       
       - name: Install WebdriverManager
         run: pip install webdriver-manager
