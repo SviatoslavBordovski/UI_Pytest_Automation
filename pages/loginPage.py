@@ -6,7 +6,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
-
 class LoginPage:
 
     def __init__(self, driver):
@@ -23,11 +22,9 @@ class LoginPage:
         self.reset_password_btn_xpath = "//input[@value='Reset Password']"
         self.contact_hr_xpath = "//a[@class='messageCloseButton']"
 
-    def enter_username(self, username):
+    def login_crm_system(self, username, password):
         self.driver.find_element(By.ID, self.username_textbox_id).send_keys(Keys.CONTROL + 'a', Keys.DELETE)
         self.driver.find_element(By.ID, self.username_textbox_id).send_keys(username)
-
-    def enter_password(self, password):
         self.driver.find_element(By.ID, self.password_textbox_id).send_keys(Keys.CONTROL + 'a', Keys.DELETE)
         self.driver.find_element(By.ID, self.password_textbox_id).send_keys(password)
 
@@ -47,12 +44,10 @@ class LoginPage:
         if credentials_flag == utils.utils.expectedEmptyCredentialsFlag:
             assert len(credentials_flag) == 24, f"ERROR! Actual invalid credentials flag length" \
                                                 f" => {len(credentials_flag)}"
-            entered_username = self.enter_username("username")
-            entered_password = self.enter_password("password")
-            logger.info("Incorrect credentials entered")
-            if entered_username is not int and entered_password is not int:
+            entered_credentials = self.login_crm_system("username", "password")
+            if entered_credentials is not int:
                 self.click_login_button()
-                logger.info("'Login' button was clicked")
+                logger.info("Incorrect credentials entered")
                 current_url = self.driver.current_url
                 assert current_url == utils.utils.expectedInvalidCredentialsUrl, f"Url after wrong credentials " \
                                                                                  f"is wrong, found {current_url}"
@@ -67,6 +62,9 @@ class LoginPage:
                     logger.info("'Forgot your password' link was clicked and user was redirected to 'Reset Password' form")
                 else:
                     raise Exception("Flag for invalid credentials not found, please debug the issue")
+
+            else:
+                raise Exception("Something wrong on with entered credentials, please debug the issue")
 
     def click_cancel_button_forgot_password_form(self):
         self.driver.find_element(By.XPATH, self.cancel_button_xpath).click()
