@@ -44,7 +44,7 @@ from utils import utils
 #         report.extra = extra
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="brave",
+    parser.addoption("--browser", action="store", default="chrome",
                      help="Type in CLI --desktop-browser=Chrome or Firefox")
     parser.addoption('--host', default='staging',
                      help='host options: "staging", "production", or your own host for local testing')
