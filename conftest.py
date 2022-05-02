@@ -18,30 +18,30 @@ from pages.homePage import HomePage
 from utils import utils
 
 
-@pytest.mark.hookwrapper
-def pytest_runtest_makereport(item):
-    """
-    Extends the pytest-html plugin to take and embed screenshot in html report, whenever test failed or xfailed.
-    Detailed explanation could be found here https://www.youtube.com/watch?v=e6tL7IudnXY
-    """
-    pytest_html = item.config.pluginmanager.getplugin('html')
-    outcome = yield
-    report = outcome.get_result()
-    extra = getattr(report, 'extra', [])
+# @pytest.mark.hookwrapper
+# def pytest_runtest_makereport(item):
+#     """
+#     Extends the pytest-html plugin to take and embed screenshot in html report, whenever test failed or xfailed.
+#     Detailed explanation could be found here https://www.youtube.com/watch?v=e6tL7IudnXY
+#     """
+#     pytest_html = item.config.pluginmanager.getplugin('html')
+#     outcome = yield
+#     report = outcome.get_result()
+#     extra = getattr(report, 'extra', [])
 
-    if report.when == 'call' or report.when == "setup":
-        extra.append(pytest_html.extras.url("https://opensource-demo.orangehrmlive.com/"))
-        xfail = hasattr(report, 'wasxfail')
-        if (report.skipped and xfail) or (report.failed and not xfail):
-            report_directory = os.path.dirname(item.config.option.htmlpath)
-            file_name = report.nodeid.replace("::", "_") + ".png"
-            destination_file = os.path.join(report_directory, file_name)
-            driver.save_screenshot(destination_file)
-            if file_name:
-                html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \
-                       'onclick="window.open(this.src)" align="right"/></div>' % file_name
-                extra.append(pytest_html.extras.html(html))
-        report.extra = extra
+#     if report.when == 'call' or report.when == "setup":
+#         extra.append(pytest_html.extras.url("https://opensource-demo.orangehrmlive.com/"))
+#         xfail = hasattr(report, 'wasxfail')
+#         if (report.skipped and xfail) or (report.failed and not xfail):
+#             report_directory = os.path.dirname(item.config.option.htmlpath)
+#             file_name = report.nodeid.replace("::", "_") + ".png"
+#             destination_file = os.path.join(report_directory, file_name)
+#             driver.save_screenshot(destination_file)
+#             if file_name:
+#                 html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \
+#                        'onclick="window.open(this.src)" align="right"/></div>' % file_name
+#                 extra.append(pytest_html.extras.html(html))
+#         report.extra = extra
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome",
