@@ -1,3 +1,5 @@
+import json
+import os.path
 import time
 import pytest
 import selenium
@@ -14,7 +16,32 @@ from asserts.login_page_asserts import LoginAsserts
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
 from utils import utils
-from pytest_html_reporter import attach
+
+
+@pytest.mark.hookwrapper
+def pytest_runtest_makereport(item):
+    """
+    Extends the pytest-html plugin to take and embed screenshot in html report, whenever test failed or xfailed.
+    Detailed explanation could be found here https://www.youtube.com/watch?v=e6tL7IudnXY
+    """
+    pytest_html = item.config.pluginmanager.getplugin('html')
+    outcome = yield
+    report = outcome.get_result()
+    extra = getattr(report, 'extra', [])
+
+    if report.when == 'call' or report.when == "setup":
+        extra.append(pytest_html.extras.url("https://opensource-demo.orangehrmlive.com/"))
+        xfail = hasattr(report, 'wasxfail')
+        if (report.skipped and xfail) or (report.failed and not xfail):
+            report_directory = os.path.dirname(item.config.option.htmlpath)
+            file_name = report.nodeid.replace("::", "_") + ".png"
+            destination_file = os.path.join(report_directory, file_name)
+            driver.save_screenshot(destination_file)
+            if file_name:
+                html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \
+                       'onclick="window.open(this.src)" align="right"/></div>' % file_name
+                extra.append(pytest_html.extras.html(html))
+        report.extra = extra
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome",
@@ -144,8 +171,7 @@ def standard_test_setup_teardown(request):
     login_page_asserts.assert_login_page_contains_logo_image()
     login_page_asserts.assert_forgot_password_link_displayed()
 
-    login_page.enter_username(utils.USERNAME)
-    login_page.enter_password(utils.PASSWORD)
+    login_page.login_crm_system(utils.USERNAME, utils.PASSWORD)
     login_page.click_login_button()
     logger.info("User logged in")
 
@@ -166,20 +192,20 @@ def standard_test_setup_teardown(request):
 
     except AttributeError as error:
         logger.error("Locator issue")
-        print(error)
-        attach(data=driver.get_screenshot_as_png())
-        raise
+        raise error
 
     except selenium.common.exceptions.NoSuchElementException as error:
         logger.error("Locator was not shown or found by driver")
-        print(error)
-        attach(data=driver.get_screenshot_as_png())
-        raise
+        raise error
 
     else:
         logger.info("Teardown point reached")
-        attach(data=driver.get_screenshot_as_png())
 
     driver.close()
     driver.quit()
     logger.info("Test execution finished")
+
+
+# def load_params_from_json(json_path):
+#     with open(json_path) as f:
+#         return json.load(f)
