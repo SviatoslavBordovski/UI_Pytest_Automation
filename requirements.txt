@@ -4,4 +4,4 @@ pytest-xdist >= 2.5.0
 selenium >= 4.1.0
 webdriver-manager >= 3.5.2
 moment >= 0.12.1
-allure-pytest >= 2.9.45
+
