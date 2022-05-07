@@ -10,8 +10,4 @@
 
 # Run tests project setup
 
-> Project allows to run tests in parallel with headless/headed mode using passed browser name and version (desktop or mobile/tablet) with 'pytest -m=regression -n=2 -v --browser=chrome --headless=true' command.
-
-> Run all the tests in parallel from root folder 'pytest -v -n=3 --browser=edge --headless=true'
-
-> Note! If there are more CPU's set than test modules with opened browsers are launched => tests may fail unexpectedly.
+> Project allows to run tests in parallel with headless/headed mode using passed browser name and version (desktop or mobile/tablet) with 'pytest -m=regression -n=2 -v --browser=chrome --headless=true' command. Note! If there are more CPU's set than test modules with opened browsers are launched => tests may fail unexpectedly.
