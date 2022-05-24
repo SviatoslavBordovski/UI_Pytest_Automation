@@ -34,10 +34,12 @@ jobs:
           sudo apt-get update
           sudo apt-get --only-upgrade install google-chrome-stable
           google-chrome --version
-
-      - uses: browser-actions/setup-edge@latest
-      - name: Print Edge version
-        run: (Get-Item (Get-Command msedge).Source).VersionInfo.ProductVersione
+          
+      - name: Install Firefox stable
+        run: | 
+          sudo apt-get update
+          sudo apt install firefox
+          firefox --version
           
       - name: Install selenium library
         run: pip install selenium==4.1.0
@@ -59,7 +61,7 @@ jobs:
           
       - name: Regression Test Suite
         working-directory: ./tests
-        run: pytest -v -n=3 --browser=edge
+        run: pytest -v -n=3 --browser=firefox
         
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
