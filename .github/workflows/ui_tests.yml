@@ -35,11 +35,11 @@ jobs:
           sudo apt-get --only-upgrade install google-chrome-stable
           google-chrome --version
           
-      - name: Prepare Firefox
-        uses: browser-actions/setup-firefox@latest
+#       - name: Prepare Firefox
+#         uses: browser-actions/setup-firefox@latest
       
-      - name: Firefox version
-        run: firefox --version
+#       - name: Firefox version
+#         run: firefox --version
           
       - name: Install selenium library
         run: pip install selenium==4.1.0
@@ -61,7 +61,7 @@ jobs:
           
       - name: Regression Test Suite
         working-directory: ./tests
-        run: pytest -v -n=3 --browser=firefox
+        run: pytest -v -n=3 --browser=chrome --mobile-browser=chrome
         
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
