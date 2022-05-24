@@ -35,11 +35,13 @@ jobs:
           sudo apt-get --only-upgrade install google-chrome-stable
           google-chrome --version
         
-      - name: Install Firefox stable  
+      - name: Install Edge stable  
         run: | 
           sudo apt-get update
-          sudo apt install firefox
-          firefox --version
+          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list
+          sudo apt update && sudo apt install microsoft-edge-stable
           
       - name: Install selenium library
         run: pip install selenium==4.1.0
@@ -61,7 +63,7 @@ jobs:
           
       - name: Regression Test Suite
         working-directory: ./tests
-        run: pytest -v -n=3 --browser=firefox
+        run: pytest -v -n=3 --browser=edge
         
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
