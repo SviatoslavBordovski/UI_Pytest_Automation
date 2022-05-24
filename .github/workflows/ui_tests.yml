@@ -45,7 +45,7 @@ jobs:
         run: pip install pytest-xdist
         
       - name: Install WebdriverManager
-        run: pip install webdriver-manager
+        run: pip install webdriver-manager==3.7.0
         
       - name: Install HTML Reporter for PyTest
         run: pip install pytest-html
@@ -55,7 +55,7 @@ jobs:
           
       - name: Regression Test Suite
         working-directory: ./tests
-        run: pytest -v
+        run: pytest -v -n=3
         
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
