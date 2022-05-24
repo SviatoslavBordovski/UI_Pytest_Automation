@@ -38,8 +38,8 @@ jobs:
       - name: Install Firefox stable  
         run: | 
           sudo apt-get update
-          sudo apt-get --only-upgrade install firefox-stable
-          google-chrome --version
+          sudo apt install firefox
+          firefox --version
           
       - name: Install selenium library
         run: pip install selenium==4.1.0
