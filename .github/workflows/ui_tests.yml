@@ -35,11 +35,11 @@ jobs:
           sudo apt-get --only-upgrade install google-chrome-stable
           google-chrome --version
           
-      - name: Install Firefox stable
-        run: | 
-          sudo apt-get update
-          sudo apt install firefox
-          firefox --version
+      - name: Prepare Firefox
+        uses: browser-actions/setup-firefox@latest
+      
+      - name: Firefox version
+        run: firefox --version
           
       - name: Install selenium library
         run: pip install selenium==4.1.0
