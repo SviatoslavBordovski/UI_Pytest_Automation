@@ -34,10 +34,10 @@ jobs:
           sudo apt-get update
           sudo apt-get --only-upgrade install google-chrome-stable
           google-chrome --version
-        
-      - name: Install Edge stable  
-        run: | 
-          sudo apt update && sudo apt install microsoft-edge-stable
+
+      - uses: browser-actions/setup-edge@latest
+      - name: Print Edge version
+        run: (Get-Item (Get-Command msedge).Source).VersionInfo.ProductVersione
           
       - name: Install selenium library
         run: pip install selenium==4.1.0
