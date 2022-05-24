@@ -104,7 +104,7 @@ def login_test_setup(request):
 
     elif browser == "edge":
         from selenium.webdriver.edge.options import Options
-        ed = Service(EdgeChromiumDriverManager(log_level=20).install())
+        ed = Service(EdgeChromiumDriverManager().install())
         edge_options = Options()
 
         if headless == "true":
