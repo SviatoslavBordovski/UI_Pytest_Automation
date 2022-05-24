@@ -55,7 +55,7 @@ jobs:
           
       - name: Regression Test Suite
         working-directory: ./tests
-        run: pytest -v -n=3 --browser=edge
+        run: pytest -v -n=3 --browser=chrome
         
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
