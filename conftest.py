@@ -152,7 +152,7 @@ def standard_test_setup_teardown(request):
         logger.info("Firefox tests run has started")
     elif browser == "edge":
         from selenium.webdriver.edge.options import Options
-        ed = Service(EdgeChromiumDriverManager(log_level=20).install())
+        ed = Service(EdgeChromiumDriverManager().install())
         edge_options = Options()
         edge_options.add_argument('--headless')
         driver = webdriver.Edge(service=ed, options=edge_options)
