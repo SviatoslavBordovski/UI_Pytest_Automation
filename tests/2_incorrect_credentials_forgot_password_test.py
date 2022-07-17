@@ -24,7 +24,7 @@ class TestForgotPassword:
             login_page_asserts.assert_login_page_contains_logo_image()
             login_page_asserts.assert_forgot_password_link_displayed()
 
-            # Login with empty credentials, then with wrong credentials and check 'forgot password' form works
+            # Login with empty credentials, then login with wrong credentials and check 'forgot password' form works
             login_page.sign_in_with_empty_or_incorrect_credentials()
             login_page.cancel_fill_forgot_password_form(utils.forgotPasswordTitle)
             login_page.fill_forgot_password_form(utils.employeeNAME)
