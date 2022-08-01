@@ -1,7 +1,7 @@
 import pytest
 
 def first_tc_login_params():
-    list = [
+    params_list = [
         ("Admin", "admin123"),
         pytest.param("random_username", "admin123",
                      marks=pytest.mark.xfail(reason="Non-existing username entered")),
@@ -15,4 +15,4 @@ def first_tc_login_params():
                      marks=pytest.mark.xfail(reason="Empty password"))
     ]
 
-    return list
+    return params_list
