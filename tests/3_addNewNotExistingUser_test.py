@@ -5,7 +5,7 @@ from tc_params import new_not_existing_user_params
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 
 @pytest.mark.usefixtures("standard_test_setup_teardown")
-class TestAdminPage():
+class TestAdminPage:
 
     tc_three_params = new_not_existing_user_params.third_tc_new_user_params()
 
